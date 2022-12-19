@@ -1,7 +1,10 @@
+mod utils;
 pub mod stable_diffusion {
 
     use reqwest::Result;
     use serde::{self, Deserialize, Serialize};
+
+    pub use crate::utils::image;
 
     #[derive(Serialize, Deserialize, Debug, Default)]
     pub struct StableDiffusionParameters {

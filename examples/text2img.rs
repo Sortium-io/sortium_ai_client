@@ -1,6 +1,4 @@
-use sd_client::stable_diffusion::{
-    StableDiffusionClient, StableDiffusionParameters,
-};
+use sd_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
 
 #[tokio::main]
 async fn main() {

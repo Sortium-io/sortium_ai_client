@@ -1,0 +1,46 @@
+use clap::Parser;
+use dotenv::dotenv;
+use sd_client::stable_diffusion::{
+    image::{base64_to_png, load_image_from_disk, save_image_to_disk},
+    StableDiffusionClient, StableDiffusionParameters,
+};
+use std::env;
+
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    init_image: String,
+    prompt: String,
+}
+
+#[tokio::main]
+async fn main() {
+    dotenv().ok();
+
+    let sd_api_url = env::var("SD_API_URL").expect("SD_API_URL must be set");
+
+    let args = Args::parse();
+    println!("Init image: {:?}", args.init_image);
+    println!("Prompt: {:?}", args.prompt);
+
+    let base64 = load_image_from_disk(args.init_image);
+
+    let params = StableDiffusionParameters {
+        init_images: Some(vec![base64]),
+        prompt: Some(args.prompt),
+        steps: Some(50),
+        ..Default::default()
+    };
+
+    let sd_api = StableDiffusionClient::new(sd_api_url.into());
+
+    match sd_api.img2img(params).await {
+        Ok(res) => {
+            let image = base64_to_png(res.images[0].clone());
+            save_image_to_disk(image, "image.png".to_string());
+        }
+        Err(err) => {
+            println!("{:?}", err);
+        }
+    }
+}
