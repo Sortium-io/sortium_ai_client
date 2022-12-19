@@ -1,0 +1,15 @@
+[package]
+name = "yew-app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+yew = { version = "0.20.0", features = ["csr"] }
+sd_client = { path = "../../" }
+wasm-bindgen-futures = "0.4.33"
+wasm-bindgen = { version = "0.2.83", features = ["serde-serialize"] }
+web-sys = { version = "0.3.60" }
+dotenv = "0.15.0"
+load-dotenv = "0.1.2"
