@@ -63,6 +63,19 @@ Both the img2img and text2img functions return a Result type, which allows you t
 
 There are some examples available in the `examples` folder:
 
+
+This example calls the text2img function and display the API response without any parsing:
+
 ```bash
 cargo run --example text2img
+```
+
+An example demonstrating how to use the clap library to create a command line interface for our stable diffusion client:
+
+```bash
+cargo run --example clap "A golden gorilla with a baseball hat"
+```
+
+```bash
+cargo run --example clap-img "example.jpg" "A golden gorilla with a baseball hat"
 ```
