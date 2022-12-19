@@ -1,0 +1,68 @@
+# Stable Diffusion API Client
+
+This library provides a client for interacting with the Stable Diffusion API. It allows you to generate images based on either an input image or a text prompt.
+
+## Installation
+
+Add this to your Cargo.toml:
+
+```toml
+[dependencies]
+stable_diffusion = "0.1"
+```
+
+## Usage
+
+To use the client, you will need to create an instance of StableDiffusionClient and provide the base URL of the API as a string:
+
+```rust
+use stable_diffusion::StableDiffusionClient;
+
+let client = StableDiffusionClient::new("http://example.com".to_string());
+```
+
+### Generating Images from an Input Image
+
+To generate images based on an input image, you can use the img2img function:
+
+```rust
+use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+
+let client = StableDiffusionClient::new("http://example.com".to_string());
+let params = StableDiffusionParameters {
+    init_images: Some(vec!["base64-encoded-image"]),
+    ..Default::default()
+};
+let response = client.img2img(params).await.unwrap();
+```
+
+The StableDiffusionParameters struct allows you to specify various configuration options for the image generation process. For a full list of available options, see the documentation for the StableDiffusionParameters struct.
+
+### Generating Images from a Text Prompt
+
+To generate images based on a text prompt, you can use the text2img function:
+
+```rust
+use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+
+let client = StableDiffusionClient::new("http://example.com".to_string());
+let params = StableDiffusionParameters {
+    prompt: "Some prompt".to_string(),
+    ..Default::default()
+};
+let response = client.text2img(params).await.unwrap();
+```
+
+As with the img2img function, you can use the StableDiffusionParameters struct to specify various configuration options.
+
+## Error Handling
+
+Both the img2img and text2img functions return a Result type, which allows you to handle any errors that may occur during the image generation process.
+
+## Examples
+
+There are some examples available in the `examples` folder:
+
+```bash
+cargo run --example text2img
+```
