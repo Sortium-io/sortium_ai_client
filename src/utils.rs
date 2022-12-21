@@ -9,15 +9,30 @@ pub mod image {
         
     }
 
-    pub fn base64_to_png(base64_text: String) -> image::DynamicImage {
+    pub fn base64_to_png(base64_text: String) -> Result<image::DynamicImage, Box<dyn std::error::Error>> {
         // Decode the base64 text
-        let decoded = base64::decode(base64_text).unwrap();
+        match base64::decode(base64_text) {
+            Ok(decoded) => {
+                // Create a cursor from the decoded data
+                let cursor = Cursor::new(decoded);
+        
+                // Read the image from the cursor
+                match image::load(cursor, ImageFormat::Png) {
+                    Ok(image) => {
+                        return Ok(image);
+                    },
+                    Err(err) => {
+                        println!("Error loading image: {:?}", err);
+                        return Err(Box::new(err));
+                    }
+                }
+            },
+            Err(err) => {
+                println!("Error decoding base64: {:?}", err);
+                return Err(Box::new(err));
+            }
+        }
 
-        // Create a cursor from the decoded data
-        let cursor = Cursor::new(decoded);
-
-        // Read the image from the cursor
-        image::load(cursor, ImageFormat::Png).unwrap()
     }
 
     pub fn save_image_to_disk(image: image::DynamicImage, file_name: String) {

@@ -59,12 +59,51 @@ As with the img2img function, you can use the StableDiffusionParameters struct t
 
 Both the img2img and text2img functions return a Result type, which allows you to handle any errors that may occur during the image generation process.
 
-## Examples
+## WASM Support
+
+This library supports WASM targets. To use it in a WASM project, you will need to use the library `wasm-bindgen-futures`:
+
+```toml
+[dependencies]
+wasm-bindgen-futures = "0.4.33"
+```
+
+Invoke the library inside a spawn_local block:
+
+```rust
+use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+use wasm_bindgen_futures::spawn_local;
+
+let client = StableDiffusionClient::new("http://example.com".to_string());
+let params = StableDiffusionParameters {
+    prompt: "Some prompt".to_string(),
+    ..Default::default()
+};
+spawn_local(async move {
+    let response = client.text2img(params).await.unwrap();
+});
+```
+
+You can view a full example using the Yew framework in the `examples/yew-app` folder. Open the folder in a terminal window and run `trunk serve` to start the development server. You can then view the example at `http://localhost:8080.
+
+### Troubleshooting WASM
+
+If you are using the library in a WASM project and are getting a HTTP 405 error you will need to change your server configuration to emit the CORS headers, or use a nginx server to proxy the API requests, applying the desired CORS headers.
+
+You can view an example configuration in the `examples/yew-app` folder that starts a docker nginx server using a custom configuration file.
+
+```bash
+cd examples/yew-app && docker-compose up -d
+```
+
+Feel free to modify the configuration file to suit your needs.
+
+## Other Examples
 
 There are some examples available in the `examples` folder:
 
 
-This example calls the text2img function and display the API response without any parsing:
+This example calls the `text2img` function and display the API response without any parsing:
 
 ```bash
 cargo run --example text2img

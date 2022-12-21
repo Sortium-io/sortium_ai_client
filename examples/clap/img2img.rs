@@ -37,7 +37,14 @@ async fn main() {
     match sd_api.img2img(params).await {
         Ok(res) => {
             let image = base64_to_png(res.images[0].clone());
-            save_image_to_disk(image, "image.png".to_string());
+            match image {
+                Ok(image) => {
+                    save_image_to_disk(image, "image.png".to_string());
+                }
+                Err(err) => {
+                    println!("{:?}", err);
+                }
+            }
         }
         Err(err) => {
             println!("{:?}", err);
