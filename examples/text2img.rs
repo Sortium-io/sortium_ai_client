@@ -1,4 +1,4 @@
-use sd_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+use sortium_ai_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
 
 #[tokio::main]
 async fn main() {
