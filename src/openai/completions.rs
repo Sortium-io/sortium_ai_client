@@ -33,41 +33,43 @@ impl Default for CompletionsInput {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct CompletionsResponse {
-    id: Option<String>,
-    object: Option<String>,
-    created: Option<i64>,
-    model: Option<String>,
-    choices: Option<Vec<Choice>>,
-    usage: Option<Usage>,
+    pub id: Option<String>,
+    pub object: Option<String>,
+    pub created: Option<i64>,
+    pub model: Option<String>,
+    pub choices: Option<Vec<Choice>>,
+    pub usage: Option<Usage>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct Choice {
-    text: Option<String>,
-    index: Option<i32>,
-    logprobs: Option<i32>,
-    finish_reason: Option<String>,
+    pub text: Option<String>,
+    pub index: Option<i32>,
+    pub logprobs: Option<i32>,
+    pub finish_reason: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct Usage {
-    prompt_tokens: Option<i32>,
-    completion_tokens: Option<i32>,
-    total_tokens: Option<i32>,
+    pub prompt_tokens: Option<i32>,
+    pub completion_tokens: Option<i32>,
+    pub total_tokens: Option<i32>,
 }
 
 pub struct CompletionsClient {
     client: Client,
     api_key: String,
+    api_url: String,
 }
 
 impl CompletionsClient {
-    pub fn new(api_key: String) -> Self {
+    pub fn new(api_key: String, api_url: String) -> Self {
         CompletionsClient {
             client: reqwest::Client::new(),
             api_key,
+            api_url,
         }
     }
 
@@ -77,7 +79,7 @@ impl CompletionsClient {
     ) -> Result<CompletionsResponse, reqwest::Error> {
         let response = self
             .client
-            .post("https://api.openai.com/v1/completions")
+            .post(format!("{}{}", &self.api_url, "/v1/completions"))
             .header("Content-Type", "application/json")
             .header("Authorization", format!("Bearer {}", self.api_key))
             .json(&input)

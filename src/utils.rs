@@ -16,6 +16,8 @@ pub mod image {
     /// # Example
     ///
     /// ```
+    /// use sortium_ai_client::utils::image::load_image_from_disk;
+    ///
     /// let base64_text = load_image_from_disk("example.png");
     /// ```
     pub fn load_image_from_disk(file_name: String) -> String {
@@ -37,6 +39,7 @@ pub mod image {
     ///
     /// ```
     /// use image;
+    /// use sortium_ai_client::utils::image::base64_to_png;
     ///
     /// let base64_text = "iVBORw0KGg....";
     /// let image = base64_to_png(base64_text).unwrap();
@@ -78,9 +81,10 @@ pub mod image {
     ///
     /// ```
     /// use image;
+    /// use sortium_ai_client::utils::image::save_image_to_disk;
     ///
     /// let image = image::open("example.png").unwrap();
-    /// save_image_to_disk(image, "saved_image.png");
+    /// save_image_to_disk(image, "saved_image.png".to_string());
     /// ```
     pub fn save_image_to_disk(image: image::DynamicImage, file_name: String) {
         image.save(file_name).unwrap();
