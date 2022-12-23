@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use sd_client::stable_diffusion::{    
+use sortium_ai_client::stable_diffusion::{    
     StableDiffusionClient, StableDiffusionParameters,
 };
 use load_dotenv::load_dotenv;
