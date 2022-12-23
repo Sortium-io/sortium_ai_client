@@ -53,9 +53,7 @@ pub mod image {
 
                 // Read the image from the cursor
                 match image::load(cursor, ImageFormat::Png) {
-                    Ok(image) => {
-                        Ok(image)
-                    }
+                    Ok(image) => Ok(image),
                     Err(err) => {
                         println!("Error loading image: {:?}", err);
                         Err(Box::new(err))
