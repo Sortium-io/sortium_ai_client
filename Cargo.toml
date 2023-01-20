@@ -7,6 +7,9 @@ license = "MIT"
 authors = ["Sortium CC <https://sortium.com>"]
 repository = "https://github.com/Sortium-io/sortium_ai_client"
 
+[lib]
+doctest = false
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -55,3 +58,4 @@ keywords = ["openai", "api", "client", "clap"]
 [dev-dependencies]
 clap = { version = "4.0.29", features = ["derive"] }
 dotenv = "0.15.0"
+mockito = "0.23.2"

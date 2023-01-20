@@ -15,6 +15,7 @@ async fn main() {
     dotenv().ok();
 
     let api_key = env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY must be set");
+    let api_url = env::var("OPENAI_API_URL").expect("OPENAI_API_URL must be set");
 
     let args = Args::parse();
     println!("Prompt: {:?}", args.prompt);
@@ -26,7 +27,7 @@ async fn main() {
 
     println!("Params: {:?}", params);
 
-    let completions_client = CompletionsClient::new(api_key.into());
+    let completions_client = CompletionsClient::new(api_key.into(), api_url.into());
 
     let result = completions_client.generate_completion(params).await;
     match result {
