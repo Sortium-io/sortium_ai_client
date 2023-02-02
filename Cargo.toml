@@ -55,6 +55,17 @@ description = "A client for the OpenAI API using the Clap library"
 category = "command-line-utilities"
 keywords = ["openai", "api", "client", "clap"]
 
+[[example]]
+name = "clap-embeddings"
+path = "examples/clap/embeddings.rs"
+
+[package.metadata.example.clap-embeddings]
+name = "OpenAI Embeddings Clap Client"
+description = "A client for the OpenAI API using the Clap library"
+category = "command-line-utilities"
+keywords = ["openai", "api", "client", "clap"]
+
+
 [dev-dependencies]
 clap = { version = "4.0.29", features = ["derive"] }
 dotenv = "0.15.0"
