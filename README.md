@@ -1,4 +1,4 @@
-# Stable Diffusion API Client
+# Sortium AI Client
 
 This library provides a client for interacting with the Stable Diffusion API. It allows you to generate images based on either an input image or a text prompt.
 
@@ -8,15 +8,17 @@ Add this to your Cargo.toml:
 
 ```toml
 [dependencies]
-stable_diffusion = "0.1"
+sortium_ai_client = { git = "ssh://git@github.com/Sortium-io/sortium_ai_client.git", branch = "develop" }
 ```
+
+> NOTE: You may need to set the `CARGO_NET_GIT_FETCH_WITH_CLI` environment variable to `true` to instruct cargo to use your git default installation.
 
 ## Usage
 
 To use the client, you will need to create an instance of StableDiffusionClient and provide the base URL of the API as a string:
 
 ```rust
-use stable_diffusion::StableDiffusionClient;
+use sortium_ai_client::stable_diffusion::StableDiffusionClient;
 
 let client = StableDiffusionClient::new("http://example.com".to_string());
 ```
@@ -26,7 +28,7 @@ let client = StableDiffusionClient::new("http://example.com".to_string());
 To generate images based on an input image, you can use the img2img function:
 
 ```rust
-use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+use sortium_ai_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
 
 let client = StableDiffusionClient::new("http://example.com".to_string());
 let params = StableDiffusionParameters {
@@ -43,7 +45,7 @@ The StableDiffusionParameters struct allows you to specify various configuration
 To generate images based on a text prompt, you can use the text2img function:
 
 ```rust
-use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+use sortium_ai_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
 
 let client = StableDiffusionClient::new("http://example.com".to_string());
 let params = StableDiffusionParameters {
@@ -71,7 +73,7 @@ wasm-bindgen-futures = "0.4.33"
 Invoke the library inside a spawn_local block:
 
 ```rust
-use stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
+use sortium_ai_client::stable_diffusion::{StableDiffusionClient, StableDiffusionParameters};
 use wasm_bindgen_futures::spawn_local;
 
 let client = StableDiffusionClient::new("http://example.com".to_string());

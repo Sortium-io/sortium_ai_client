@@ -17,6 +17,22 @@ pub struct CompletionsInput {
     pub frequency_penalty: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub presence_penalty: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub n: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stream: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logprobs: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub echo: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub best_of: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logit_bias: Option<serde_json::Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user: Option<String>,
 }
 
 impl Default for CompletionsInput {
@@ -29,6 +45,14 @@ impl Default for CompletionsInput {
             top_p: Some(1),
             frequency_penalty: Some(0.0),
             presence_penalty: Some(0.0),
+            stop: None,
+            n: Some(1),
+            stream: Some(false),
+            logprobs: Some(0),
+            echo: Some(false),
+            best_of: Some(1),
+            logit_bias: None,
+            user: None,
         }
     }
 }
