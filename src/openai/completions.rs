@@ -8,6 +8,8 @@ pub struct CompletionsInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub suffix: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub temperature: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub max_tokens: Option<u32>,
@@ -40,6 +42,7 @@ impl Default for CompletionsInput {
         CompletionsInput {
             model: Some("text-davinci-003".to_owned()),
             prompt: Some("".to_owned()),
+            suffix: None,
             temperature: Some(0.7),
             max_tokens: Some(256),
             top_p: Some(1),
