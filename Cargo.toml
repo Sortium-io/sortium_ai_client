@@ -65,6 +65,16 @@ description = "A client for the OpenAI API using the Clap library"
 category = "command-line-utilities"
 keywords = ["openai", "api", "client", "clap"]
 
+[[example]]
+name = "clap-edits"
+path = "examples/clap/edits.rs"
+
+[package.metadata.example.clap-edits]
+name = "OpenAI Edits Clap Client"
+description = "A client for the OpenAI API using the Clap library"
+category = "command-line-utilities"
+keywords = ["openai", "api", "client", "clap"]
+
 
 [dev-dependencies]
 clap = { version = "4.0.29", features = ["derive"] }

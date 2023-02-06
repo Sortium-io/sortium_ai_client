@@ -120,3 +120,7 @@ cargo run --example clap "A golden gorilla with a baseball hat"
 ```bash
 cargo run --example clap-img "example.jpg" "A golden gorilla with a baseball hat"
 ```
+
+```bash
+cargo run --example clap-edits "This gorilla has a golden fur" "Replace the gorilla fur color with red"
+```
