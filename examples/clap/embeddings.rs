@@ -1,5 +1,5 @@
 use clap::Parser;
-use dotenv::dotenv;
+use dotenvy::dotenv;
 use sortium_ai_client::openai::embeddings::{EmbeddingsClient, EmbeddingsInput};
 
 use std::env;

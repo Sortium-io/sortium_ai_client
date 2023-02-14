@@ -78,5 +78,5 @@ keywords = ["openai", "api", "client", "clap"]
 
 [dev-dependencies]
 clap = { version = "4.0.29", features = ["derive"] }
-dotenv = "0.15.0"
+dotenvy = "0.15.6"
 mockito = "0.23.2"

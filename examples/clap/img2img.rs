@@ -1,5 +1,5 @@
 use clap::Parser;
-use dotenv::dotenv;
+use dotenvy::dotenv;
 use sortium_ai_client::stable_diffusion::{
     image::{base64_to_png, load_image_from_disk, save_image_to_disk},
     StableDiffusionClient, StableDiffusionParameters,
