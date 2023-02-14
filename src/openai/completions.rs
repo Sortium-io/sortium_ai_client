@@ -1,7 +1,7 @@
 use reqwest::Client;
 use serde::{self, Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CompletionsInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub model: Option<String>,
@@ -60,7 +60,7 @@ impl Default for CompletionsInput {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
 pub struct CompletionsResponse {
     pub id: Option<String>,
     pub object: Option<String>,
@@ -70,7 +70,7 @@ pub struct CompletionsResponse {
     pub usage: Option<Usage>,
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
 pub struct Choice {
     pub text: Option<String>,
     pub index: Option<i32>,
@@ -78,7 +78,7 @@ pub struct Choice {
     pub finish_reason: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
 pub struct Usage {
     pub prompt_tokens: Option<i32>,
     pub completion_tokens: Option<i32>,
