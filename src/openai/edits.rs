@@ -2,7 +2,7 @@ use reqwest::Client;
 use serde::{self, Deserialize, Serialize};
 use crate::openai::completions::{Choice, Usage};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct EditInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub model: Option<String>,
@@ -34,7 +34,7 @@ impl Default for EditInput {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
 pub struct EditResponse {
     pub object: Option<String>,
     pub created: Option<i64>,

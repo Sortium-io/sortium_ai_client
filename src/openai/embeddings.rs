@@ -1,7 +1,7 @@
 use reqwest::Client;
 use serde::{self, Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct EmbeddingsInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub model: Option<String>,
@@ -18,7 +18,7 @@ impl Default for EmbeddingsInput {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct EmbeddingsResponse {
     object: Option<String>,
     data: Option<Vec<Embedding>>,
@@ -26,14 +26,14 @@ pub struct EmbeddingsResponse {
     usage: Option<Usage>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Embedding {
     object: Option<String>,
     embedding: Option<Vec<f32>>,
     index: Option<usize>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Usage {
     prompt_tokens: Option<usize>,
     total_tokens: Option<usize>,
