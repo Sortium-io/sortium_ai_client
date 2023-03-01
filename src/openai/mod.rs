@@ -1,3 +1,4 @@
+pub mod chats;
 pub mod completions;
-pub mod embeddings;
 pub mod edits;
+pub mod embeddings;

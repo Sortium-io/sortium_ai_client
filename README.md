@@ -104,23 +104,26 @@ Feel free to modify the configuration file to suit your needs.
 
 There are some examples available in the `examples` folder:
 
-
 This example calls the `text2img` function and display the API response without any parsing:
 
 ```bash
 cargo run --example text2img
 ```
 
-An example demonstrating how to use the clap library to create a command line interface for our stable diffusion client:
-
-```bash
-cargo run --example clap "A golden gorilla with a baseball hat"
-```
+This example uses Stable Diffusion to generate an image based on an input prompt:
 
 ```bash
 cargo run --example clap-img "example.jpg" "A golden gorilla with a baseball hat"
 ```
 
+This example uses the OpenAI Completions Edit feature to replace parts of a given text:
+
 ```bash
 cargo run --example clap-edits "This gorilla has a golden fur" "Replace the gorilla fur color with red"
+```
+
+This one uses the OpenAI ChatGPT API feature to generate a response to a given prompt:
+
+```bash
+cargo run --example clap-chat "What is the role of a Jedi Knight?"
 ```
